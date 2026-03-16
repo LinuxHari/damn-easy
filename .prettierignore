@@ -1,0 +1,14 @@
+# Ignore artifacts and lock files
+node_modules
+.next
+build
+dist
+package-lock.json
+yarn.lock
+.env
+.env.local
+
+# Ignore images/icons
+public/**/*.svg
+public/**/*.png
+public/**/*.jpg
