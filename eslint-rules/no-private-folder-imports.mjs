@@ -4,13 +4,15 @@ export const noPrivateFolderImports = {
   meta: {
     type: 'problem',
     docs: {
-      description: 'Disallow importing from private `_`-prefixed folders outside their parent directory',
+      description:
+        'Disallow importing from private `_`-prefixed folders outside their parent directory',
       category: 'Best Practices',
       recommended: true,
     },
     schema: [],
     messages: {
-      privateImport: 'Cannot import from private folder `{{folder}}` outside its parent directory `{{parent}}`.',
+      privateImport:
+        'Cannot import from private folder `{{folder}}` outside its parent directory `{{parent}}`.',
     },
   },
   create(context) {
@@ -35,7 +37,7 @@ export const noPrivateFolderImports = {
         if (node.source.type === 'Literal' && typeof node.source.value === 'string') {
           checkImport(context, node, node.source.value);
         }
-      }
+      },
     };
   },
 };
@@ -46,13 +48,13 @@ function checkImport(context, node, importPath) {
   }
 
   const projectRoot = context.cwd || process.cwd();
-  const rawImporterPath = context.filename || (context).physicalFilename;
-  const importerPath = path.isAbsolute(rawImporterPath) 
-    ? rawImporterPath 
+  const rawImporterPath = context.filename || context.physicalFilename;
+  const importerPath = path.isAbsolute(rawImporterPath)
+    ? rawImporterPath
     : path.resolve(projectRoot, rawImporterPath);
-  
+
   let importedPathAbsolute = '';
-  
+
   if (importPath.startsWith('@/')) {
     importedPathAbsolute = path.resolve(projectRoot, importPath.replace(/^@\//, ''));
   } else {
@@ -60,13 +62,13 @@ function checkImport(context, node, importPath) {
   }
 
   const importedDir = path.dirname(importedPathAbsolute);
-  
+
   if (!importedDir.includes('/_') && !importedDir.includes('\\_')) {
     return;
   }
 
   const segments = importedDir.split(path.sep);
-  
+
   let privateFolderIndex = -1;
   let privateFolderName = '';
 
@@ -81,8 +83,8 @@ function checkImport(context, node, importPath) {
   if (privateFolderIndex !== -1) {
     const ownerDirPath = segments.slice(0, privateFolderIndex).join(path.sep);
     const normalizedOwnerDir = path.resolve(ownerDirPath);
-    const ownerWithSep = normalizedOwnerDir.endsWith(path.sep) 
-      ? normalizedOwnerDir 
+    const ownerWithSep = normalizedOwnerDir.endsWith(path.sep)
+      ? normalizedOwnerDir
       : normalizedOwnerDir + path.sep;
 
     if (!importerPath.startsWith(ownerWithSep) && importerPath !== normalizedOwnerDir) {
