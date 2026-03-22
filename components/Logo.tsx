@@ -1,23 +1,19 @@
 import Link from '@/components/Link';
+import { LOGO_URL } from '@/constants';
+import Image from 'next/image';
 
-enum LogoType {
-  PRIMARY = 'primary',
-  SECONDARY = 'secondary',
-}
-
-type LogoProps = {
-  type?: LogoType;
-};
-
-const Logo = ({ type = LogoType.PRIMARY }: LogoProps) => {
-  const logoType = {
-    [LogoType.PRIMARY]: 'text-4xl font-[800] text-primary',
-    [LogoType.SECONDARY]: 'text-3xl font-bold text-secondary',
-  };
-
+const Logo = () => {
   return (
-    <Link href="/" className={`${logoType[type]} inline-block w-full text-center`}>
-      DAMN EASY
+    <Link href="/" className="flex h-12! w-full items-center justify-center">
+      <Image
+        src={LOGO_URL}
+        width={240}
+        height={96}
+        alt="logo"
+        priority
+        placeholder="empty"
+        className="object-contain"
+      />
     </Link>
   );
 };

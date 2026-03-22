@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
-import { DM_Sans } from 'next/font/google';
+import { Lexend } from 'next/font/google';
 import './globals.css';
 
-const dmSans = DM_Sans({
-  variable: '--font-dm-sans',
+const lexend = Lexend({
+  // variable: '--font-dm-sans',
   subsets: ['latin'],
+  display: 'swap',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 });
 
 export const metadata: Metadata = {
@@ -19,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} antialiased`}>{children}</body>
+      <body className={`${lexend.className} antialiased`}>{children}</body>
     </html>
   );
 }

@@ -29,7 +29,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    "**/*.mts",
+    "eslint-rules/no-private-folder-imports.mjs",
+    "eslint-rules/index.mjs"
   ],
   "exclude": ["node_modules"]
 }

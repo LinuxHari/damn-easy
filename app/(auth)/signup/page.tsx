@@ -1,18 +1,18 @@
 import GoogleSign from '../_components/GoogleSign';
 import SignSeparator from '../_components/SignSeparator';
-import LoginForm from './_components/LoginForm';
-import LoginFooter from './_components/LoginFooter';
+import SignupForm from './_components/SignupForm';
+import SignupFooter from './_components/SignupFooter';
 import SignCard from '../_components/SignCard';
 
-const Login = () => {
+const Signup = () => {
   return (
-    <SignCard title="Log in to continue">
-      <LoginForm />
+    <SignCard title="Signup to continue">
+      <SignupForm />
       <SignSeparator />
       <GoogleSign />
-      <LoginFooter />
+      <SignupFooter />
     </SignCard>
   );
 };
 
-export default Login;
+export default Signup;

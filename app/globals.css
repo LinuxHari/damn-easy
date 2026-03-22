@@ -185,13 +185,30 @@
   h6 {
     @apply leading-[1]!;
   }
+}
 
-  /* ref: https://tailwindcss.com/docs/functions-and-directives */
-  .form {
-    @apply mx-auto! my-0! box-border! flex! w-80! flex-col! items-center rounded-sm! bg-white! px-10! py-8! shadow-none! md:w-[400px]! md:shadow-[0_0_10px_rgba(0,0,0,0.1)]!;
+@layer components {
+  .sign-form {
+    @apply mx-auto my-0! box-border! flex! w-9/10 max-w-80! flex-col items-center gap-0! rounded-sm! border-0! bg-white! p-0 md:w-[400px]! md:max-w-[400px]! md:border md:px-10! md:py-8!;
+
+    .sign-separator {
+      @apply mt-6 mb-4 block text-center text-sm font-semibold text-gray-500;
+    }
   }
+}
 
-  .form-input {
-    @apply h-10! w-full! rounded-none! border! px-1.5! py-2! text-sm! shadow-none!;
+@layer utilities {
+  .page-content-center {
+    @apply flex h-screen! w-screen items-center justify-center;
+  }
+}
+
+.form-shadow {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px !important;
+}
+
+@media (max-width: 768px) {
+  .form-shadow {
+    box-shadow: none !important;
   }
 }
