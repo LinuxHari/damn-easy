@@ -1,2 +1,4 @@
-export const LOGO_URL = 'https://ik.imagekit.io/z8mf1mogi/logo.png';
-export const GOOGLE_LOGO_URL = 'https://ik.imagekit.io/z8mf1mogi/google-logo.svg';
+import { env } from '@/env';
+
+export const LOGO_URL = `${env.NEXT_PUBLIC_ASSETS_BASE_URL}/logo.png`;
+export const GOOGLE_LOGO_URL = `${env.NEXT_PUBLIC_ASSETS_BASE_URL}/google-logo.svg`;
