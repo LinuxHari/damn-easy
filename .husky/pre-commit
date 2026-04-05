@@ -1,2 +1,2 @@
-pnpm exec tsc --noEmit
+pnpm run check-types
 pnpm run lint-staged
