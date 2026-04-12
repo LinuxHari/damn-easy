@@ -22,7 +22,7 @@ const signupSchema = z.object({
   }),
 });
 
-const SignupForm = () => {
+export const SignupForm = () => {
   const form = useForm({
     defaultValues: { email: '' },
     resolver: zodResolver(signupSchema),
@@ -76,5 +76,3 @@ const SignupForm = () => {
     </Form>
   );
 };
-
-export default SignupForm;

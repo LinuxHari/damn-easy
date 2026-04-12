@@ -7,7 +7,7 @@ type SignCardProps = {
   title?: string;
 };
 
-const SignCard = ({ children, title }: SignCardProps) => {
+export const SignCard = ({ children, title }: SignCardProps) => {
   return (
     <main className="page-content-center bg-white">
       <Card className="sign-form form-shadow">
@@ -22,5 +22,3 @@ const SignCard = ({ children, title }: SignCardProps) => {
     </main>
   );
 };
-
-export default SignCard;

@@ -17,7 +17,7 @@ const loginSchema = z.object({
   remember: z.enum(['on', 'off']).default('off'),
 });
 
-const LoginForm = () => {
+export const LoginForm = () => {
   const form = useForm({
     defaultValues: { email: '', remember: 'off' },
     resolver: zodResolver(loginSchema),
@@ -83,5 +83,3 @@ const LoginForm = () => {
     </Form>
   );
 };
-
-export default LoginForm;

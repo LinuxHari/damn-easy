@@ -1,7 +1,8 @@
 @import 'tailwindcss';
-@source '@repo/ui';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
+
+@source '../../../packages/ui';
 
 @custom-variant dark (&:is(.dark *));
 

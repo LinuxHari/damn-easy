@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  transpilePackages: ['@repo/ui'],
+  transpilePackages: ['@repo/ui', '@repo/app-config'],
 };
 
 export default nextConfig;
