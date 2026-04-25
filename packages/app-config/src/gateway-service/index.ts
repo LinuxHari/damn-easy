@@ -1,4 +1,4 @@
-import { registerAs } from '@nestjs/config';
+import { ConfigType, registerAs } from '@nestjs/config';
 import { gatewayServiceSchema } from './schema';
 
 export const gatewayConfig = registerAs('gateway', () => {
@@ -12,3 +12,5 @@ export const gatewayConfig = registerAs('gateway', () => {
     },
   };
 });
+
+export type GatewayConfigType = ConfigType<typeof gatewayConfig>;
