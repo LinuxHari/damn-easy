@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import type { LoginRequest, TokenResponse } from '@repo/types/auth';
 import argon2 from 'argon2';
 import { RpcException } from '@nestjs/microservices';
+import { status } from '@grpc/grpc-js';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,7 @@ export class AuthService {
 
     if (!user || !(await argon2.verify(data.password, user.password))) {
       throw new RpcException({
-        code: 3,
+        code: status.INVALID_ARGUMENT,
         message: 'Email or password is invalid',
       });
     }

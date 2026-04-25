@@ -9,6 +9,7 @@ import { Inject } from '@nestjs/common';
 import type { ClientGrpc } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
 import { GRPC_CLIENTS, AuthServiceClient } from '@repo/communication';
+import { status } from '@grpc/grpc-js';
 
 @Injectable()
 export class AuthService implements OnModuleInit {
@@ -24,8 +25,7 @@ export class AuthService implements OnModuleInit {
       const res = await lastValueFrom(this.grpcAuthService.login(data));
       return res;
     } catch (error: any) {
-      console.error(error, 'occured error');
-      if (error.code === 3) {
+      if (error.code === status.INVALID_ARGUMENT) {
         throw new BadRequestException(error.details || error.message);
       }
       throw new InternalServerErrorException('Internal Server Error');

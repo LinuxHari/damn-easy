@@ -28,6 +28,7 @@
     "migration:show": "pnpm run typeorm migration:show -d src/datasource.ts"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.14.3",
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/microservices": "^11.1.18",

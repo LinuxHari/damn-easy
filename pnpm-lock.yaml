@@ -38,6 +38,9 @@ importers:
 
   apps/auth-service:
     dependencies:
+      '@grpc/grpc-js':
+        specifier: ^1.14.3
+        version: 1.14.3
       '@nestjs/common':
         specifier: ^11.0.1
         version: 11.1.18(reflect-metadata@0.2.2)(rxjs@7.8.2)
