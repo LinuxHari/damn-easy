@@ -1,8 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './auth.module';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { MicroserviceOptions } from '@nestjs/microservices';
 import { authConfig, AuthConfigType } from '@repo/app-config/auth-service';
-import { join } from 'path';
+
+import { authClientOptions } from '@repo/communication';
 
 async function bootstrap() {
   const context = await NestFactory.createApplicationContext(AppModule);
@@ -10,10 +11,9 @@ async function bootstrap() {
   const config = context.get<AuthConfigType>(authConfig.KEY);
 
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
-    transport: Transport.GRPC,
+    ...authClientOptions,
     options: {
-      package: 'auth',
-      protoPath: join(__dirname, 'auth.proto'),
+      ...authClientOptions.options,
       url: `${config.host}:${config.port}`,
     },
   });

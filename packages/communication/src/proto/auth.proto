@@ -13,6 +13,7 @@ message TokenResponse {
     string accessToken = 1;
     string refreshToken = 2;
     string csrfToken = 3;
+    string status = 4;
 }
 
 service AuthService {

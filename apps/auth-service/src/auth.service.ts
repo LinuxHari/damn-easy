@@ -2,7 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Auth } from './auth.entity';
 import { Repository } from 'typeorm';
-import { LoginRequest, TokenResponse } from './auth.interface';
+import type { LoginRequest, TokenResponse } from '@repo/types/auth';
+import argon2 from 'argon2';
+import { RpcException } from '@nestjs/microservices';
 
 @Injectable()
 export class AuthService {
@@ -12,11 +14,12 @@ export class AuthService {
   ) {}
   async login(data: LoginRequest): Promise<TokenResponse> {
     const user = await this.authRepository.findOne({ where: { email: data.email } });
-    if (!user) {
-      throw new Error('User not found');
-    }
-    if (user.password !== data.password) {
-      throw new Error('Invalid password');
+
+    if (!user || !(await argon2.verify(data.password, user.password))) {
+      throw new RpcException({
+        code: 3,
+        message: 'Email or password is invalid',
+      });
     }
     return {
       accessToken: 'accessToken',

@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { GrpcMethod } from '@nestjs/microservices';
-import type { LoginRequest, TokenResponse } from './auth.interface';
+import type { LoginRequest, TokenResponse } from '@repo/types/auth';
 
 @Controller()
 export class AuthController {

@@ -1,0 +1,38 @@
+{
+  "name": "@repo/types",
+  "version": "0.0.1",
+  "private": true,
+  "license": "UNLICENSED",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./common": {
+      "types": "./dist/common.interface.d.ts",
+      "import": "./dist/common.interface.js",
+      "require": "./dist/common.interface.js",
+      "default": "./dist/common.interface.js"
+    },
+    "./auth": {
+      "types": "./dist/auth.interface.d.ts",
+      "import": "./dist/auth.interface.js",
+      "require": "./dist/auth.interface.js",
+      "default": "./dist/auth.interface.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "check-types": "tsc --noEmit -p tsconfig.build.json",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint \"src/**/*.ts\" --max-warnings 0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/prettier-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^22.10.7",
+    "eslint": "^9.18.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.20.0"
+  }
+}
