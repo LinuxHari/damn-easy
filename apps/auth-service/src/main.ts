@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './auth.module';
 import { MicroserviceOptions } from '@nestjs/microservices';
 import { authConfig, AuthConfigType } from '@repo/app-config/auth-service';
-
 import { authClientOptions } from '@repo/communication';
 
 async function bootstrap() {
@@ -10,7 +9,9 @@ async function bootstrap() {
 
   const config = context.get<AuthConfigType>(authConfig.KEY);
 
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
+  const app = await NestFactory.create(AppModule);
+
+  app.connectMicroservice<MicroserviceOptions>({
     ...authClientOptions,
     options: {
       ...authClientOptions.options,
@@ -18,7 +19,8 @@ async function bootstrap() {
     },
   });
 
-  await app.listen();
+  await app.startAllMicroservices();
+  await app.listen(config.port);
 }
 bootstrap()
   .then(() => console.log(`Auth service is running...`))
